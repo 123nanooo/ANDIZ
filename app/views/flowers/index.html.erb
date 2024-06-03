@@ -1,0 +1,56 @@
+
+<h1>ネイル</h1>
+<h3>一覧</h3>
+<%= link_to "新規投稿へ", new_flower_path %>
+
+<div class="flowers-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Item1</th>
+        <th>Item2</th>
+        <th>Item3</th>
+        <th>Item4</th>
+        <th>Item5</th>
+        <th>About</th>
+        <th>作成日</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @flowers.each do |t| %>
+       
+        <tr>
+          <td><%= t.id %></td>
+          <td><%= image_tag t.image_url, size: "250x200" if t.image? %></td>
+          <td><%= t.item1 %></td>
+          <td><%= t.item2 %></td>
+          <td><%= t.item3 %></td>
+          <td><%= t.item4 %></td>
+          <td><%= t.item5 %></td>
+          <td><%= t.about %></td>
+          <td><%= t.created_at %></td>
+          <td>
+            <%= link_to "詳細へ", flower_path(t.id) %>
+            <%= link_to "編集する", edit_flower_path(t.id) %>
+            <%= button_to "削除する", flower_path(t.id), method: :delete %>
+            <% if user_signed_in? %>
+              <% if current_user.already_liked?(t) %>
+                  <%= link_to flower_like_path(id: t.id, flower_id: t.id), method: :delete do %>
+                      <p>いいねを取り消す</p><%= t.likes.count %>
+                  <% end %>
+              <% else %>
+                  <%= link_to flower_likes_path(id: t.id, flower_id: t.id), method: :post do %>
+                      <p>いいね</p><%= t.likes.count %>
+                  <% end %>
+              <% end %>
+            <% else %>
+                <p>いいねの数 = </p><%= t.likes.count %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

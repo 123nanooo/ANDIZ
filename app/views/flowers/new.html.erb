@@ -1,0 +1,55 @@
+<h1>(自分の題名)</h1>
+<h3>新規投稿ページ</h3>
+<%= form_for @flower do |f| %>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+# データ型がstringで選択式の入力フォーム
+  <div class="field">
+    <%= f.label :item1  %>
+    <%= f.select :item1, 
+    [["さ姫", "さ姫"], 
+    ["真珠貝", "真珠貝"], 
+    ["桜東風", "桜東風"],
+    ["凪の黄", "凪の黄"]], include_blank: "選択して下さい" %>
+  </div>
+  <div class="field">
+  <%= f.label :item2  %>
+  <%= f.select :item2, 
+  [["さ姫", "さ姫"], 
+  ["真珠貝", "真珠貝"], 
+  ["桜東風", "桜東風"],
+  ["凪の黄", "凪の黄"]], include_blank: "選択して下さい" %>
+</div>
+<div class="field">
+<%= f.label :item3  %>
+<%= f.select :item3, 
+[["さ姫", "さ姫"], 
+["真珠貝", "真珠貝"], 
+["桜東風", "桜東風"],
+["凪の黄", "凪の黄"]], include_blank: "選択して下さい" %>
+</div>
+<div class="field">
+<%= f.label :item4  %>
+<%= f.select :item4, 
+[["さ姫", "さ姫"], 
+["真珠貝", "真珠貝"], 
+["桜東風", "桜東風"],
+["凪の黄", "凪の黄"]], include_blank: "選択して下さい" %>
+</div>
+<div class="field">
+<%= f.label :item5  %>
+<%= f.select :item5, 
+[["さ姫", "さ姫"], 
+["真珠貝", "真珠貝"], 
+["桜東風", "桜東風"],
+["凪の黄", "凪の黄"]], include_blank: "選択して下さい" %>
+</div>
+
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", flowers_path %>
